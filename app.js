@@ -106,6 +106,8 @@ var	app = express();
 	//app.use('/api/v1/install',require('./v1/api_runConfigLDAP_CentOS7.js'));
 	//app.use('/api/v1/upload_cakey',require('./v1/api_uploadCAkey.js'));
 	//app.use('/api/v1/upload_cacert',require('./v1/api_uploadCAcert.js'));
+	//DIR
+	app.use('/api/v1/dir/install',require('./v1/api_dir_install.js'));
 	
 
 	app.get('/api/v1/query',function(req, res){

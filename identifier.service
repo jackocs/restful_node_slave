@@ -7,7 +7,7 @@ After=network.target
 #Environment=PORT=9092
 Type=simple
 User=root
-ExecStart=/bin/node /home/restful_node/app.js
+ExecStart=/bin/node /home/restful_node_slave/app.js
 Restart=on-failure
 
 [Install]
