@@ -66,8 +66,9 @@ if [ "$check" != "OK" ]; then
         exit
 fi
 
-#primary master
-if [ "$dtype_id" == "1" ]; then
+# LDAP Slave
+if [ "$dtype_id" == "3" ]; then
+	#printf "OKK#$domain $pass $ipaddress $desc $dtype_id $owner"
 	ckSlpad=`/bin/curl http://$ipaddress:3000/api/v1/ckSlpad`
 	if [ "$ckSlpad" == "already" ]; then
         	printf "fail#Already installed $ipaddress"
@@ -100,16 +101,20 @@ if [ "$dtype_id" == "1" ]; then
         /bin/ln -s $ldap_data ldap
 fi
 
-# LDAP SLAVE
-if [ "$dtype_id" == "3" ]; then
-	printf "OK#$domain $pass $ipaddress $desc $dtype_id $owner"
-#	master=`/bin/perl /home/restful_node/db/dir_queryMaster.pl`
-#	if [ "$master" != "null" ]; then
-#		install=`/home/restful_node/sh2/runConfigLDAP_remote_CentOS7.bash $domain $pass $ipaddress $master`
-#		#enable sync master1
-#		if [ "$install" == "ok#" ] || [ "$install" == "ok" ]; then
-#			/home/restful_node/sh2/Replication_reinstall_master.sh $domain $pass $master $ipaddress 1
-#			/home/restful_node/sh2/config_rsyslogServer_add.sh $master $ipaddress
-#		fi
-#	fi
+#update DB
+sleep 2
+if [ "$install" == "running" ]; then
+        status=1
+#        /bin/perl /home/restful_node/db/dir_install.pl $ipaddress $desc $dtype_id $owner $status $basedn
+
+        # create crontab monitor
+#        croncmd="/bin/perl /home/restful_node/sh2/monitor_ldap/ldap_response_time.pl -h 127.0.0.1 -p 389 -D 'cn=Manager,$basedn' 2>&1"
+#        cronjob="*/30 * * * * $croncmd"
+#        ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
+
+        # config logs server
+#        sh  /home/restful_node/sh/config_rsyslogServer.sh
+
+        # /bin/perl /home/restful_node/sh2/monitor_ldap/ldap_response_time.pl -h 127.0.0.1 -p 389 -D "cn=Manager,dc=jitech,dc=co,dc=th"
+        printf "OK#"
 fi

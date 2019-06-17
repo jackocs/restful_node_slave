@@ -107,6 +107,7 @@ var	app = express();
 	//app.use('/api/v1/upload_cakey',require('./v1/api_uploadCAkey.js'));
 	//app.use('/api/v1/upload_cacert',require('./v1/api_uploadCAcert.js'));
 	//DIR
+	app.use('/api/v1/ckSlpad',require('./v1/api_ckSlpad.js'));
 	app.use('/api/v1/dir/install',require('./v1/api_dir_install.js'));
 	
 
