@@ -60,7 +60,7 @@ else
         basedn=$8
 fi
 
-check=`/bin/curl http://$ipaddress:3000/api/v1/node`
+check=`/bin/curl --silent http://$ipaddress:3000/api/v1/node`
 if [ "$check" != "OK" ]; then
         printf "fail#Can not start node $ipaddress"
         exit
@@ -69,7 +69,7 @@ fi
 # LDAP Slave
 if [ "$dtype_id" == "3" ]; then
 	#printf "OKK#$domain $pass $ipaddress $desc $dtype_id $owner"
-	ckSlpad=`/bin/curl http://$ipaddress:3000/api/v1/ckSlpad`
+	ckSlpad=`/bin/curl --silent http://$ipaddress:3000/api/v1/ckSlpad`
 	if [ "$ckSlpad" == "already" ]; then
         	printf "fail#Already installed $ipaddress"
         	exit
