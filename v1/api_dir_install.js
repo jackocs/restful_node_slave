@@ -29,17 +29,16 @@ function getBaseDomain(domain){
 }
 var base_domain = getBaseDomain(domain);
 
-child = exec("/home/restful_node_slave/sh/dir_install.sh "+ domain +" "+passwd +" "+ip +" "+desc +" "+dtype_id +" "+ipmaster +" "+owner +" "+base_domain , function (error, stdout
-, stderr) {
-	let output = stdout.split('#');
+child = exec("/home/restful_node_slave/sh/dir_install.sh "+ domain +" "+passwd +" "+ip +" "+desc +" "+dtype_id +" "+ipmaster +" "+owner +" "+base_domain , function (error, stdout, stderr) {
+	//let output = stdout.split('#');
 	//let respond = {'status':output[0].trim(),'result':output[1].trim()};
 	//let result = "{\"status\":\"" + output[0] + "\",\"result\":\"" + output[1] + "\"}";
-	//res.send(result);
-	let result = {'status':output[0].trim(),'result':output[1]};
-	res.json(result);
+	//let result = {'status':output[0].trim(),'result':output[1]};
+	//res.json(result);
 	//res.send(JSON.stringify(respond)+req.query.host_id);
 	//let respond = stdout.trim();
         //res.send(JSON.stringify(respond));
+	res.send(stdout);
   console.log('stdout: ' + stdout);
   console.log('stderr: ' + stderr);
   if (error !== null) {

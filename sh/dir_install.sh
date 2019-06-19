@@ -116,5 +116,5 @@ if [ "$install" == "running" ]; then
 #        sh  /home/restful_node/sh/config_rsyslogServer.sh
 
         # /bin/perl /home/restful_node/sh2/monitor_ldap/ldap_response_time.pl -h 127.0.0.1 -p 389 -D "cn=Manager,dc=jitech,dc=co,dc=th"
-        printf "OK#"
+        printf "ok"
 fi
