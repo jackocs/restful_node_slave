@@ -91,7 +91,6 @@ permission_router.delete('/:ip', function (req, res) {
 });
 
 ///////// end permission Router
-
 var	app = express();
 	app.use(AccessControl(ac_options));
 	app.use(bodyParser.json());
@@ -101,15 +100,11 @@ var	app = express();
 	app.use('/api/v1/permission',permission_router);
 	//app.use('/api/v1/top',require('./v1/api_top.js'));
 	app.use('/api/v1/node',require('./v1/api_node.js'));
-	//app.use('/api/v1/host',require('./v1/api_host.js'));
-	//app.use('/api/v1/ckSlpad',require('./v1/api_ckSlpad.js'));
-	//app.use('/api/v1/install',require('./v1/api_runConfigLDAP_CentOS7.js'));
-	//app.use('/api/v1/upload_cakey',require('./v1/api_uploadCAkey.js'));
-	//app.use('/api/v1/upload_cacert',require('./v1/api_uploadCAcert.js'));
 	//DIR
 	app.use('/api/v1/ckSlpad',require('./v1/api_ckSlpad.js'));
 	app.use('/api/v1/dir/install',require('./v1/api_dir_install.js'));
-	
+	app.use('/api/v1/dir/del',require('./v1/api_dir_del.js'));
+	app.use('/api/v1/dir/restart',require('./v1/api_dir_restart.js'));
 
 	app.get('/api/v1/query',function(req, res){
 		res.send(JSON.stringify(req.query));
