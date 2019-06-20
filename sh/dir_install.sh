@@ -78,6 +78,41 @@ if [ "$dtype_id" == "3" ]; then
 	container="ldap"
 	docker_compose="/home/ldap_slave/docker-compose.yml"
 
+	# Create Docker Compose file
+	echo "version: '3'" > $docker_compose
+	echo "" >> $docker_compose
+	echo "services:" >> $docker_compose
+	echo "  ldap:" >> $docker_compose
+	echo "    image: ijapan/identityldap:1.0" >> $docker_compose
+	echo "    container_name: ldap" >> $docker_compose
+	echo "    environment:" >> $docker_compose
+	echo "      - 'TZ=Asia/Bangkok'" >> $docker_compose
+	echo "    volumes:" >> $docker_compose
+	echo "      - ldapdatavol:/var/lib/ldap" >> $docker_compose
+	echo "      - ldapconfigvol:/etc/openldap" >> $docker_compose
+	echo "      - /home/ldap_slave/init/:/home/init" >> $docker_compose
+	echo "    networks:" >> $docker_compose
+	echo "      - overlay" >> $docker_compose
+	echo "    ports:" >> $docker_compose
+	echo "      - '389:389'" >> $docker_compose
+	echo "      - '636:636'" >> $docker_compose
+	echo "    logging:" >> $docker_compose
+	echo "      driver: syslog" >> $docker_compose
+	echo "      options:" >> $docker_compose
+	echo "        syslog-address: 'tcp://$ipmaster:5514'" >> $docker_compose
+	echo "        syslog-format: 'rfc5424micro'" >> $docker_compose
+	echo "        syslog-facility: 'local4'" >> $docker_compose
+	echo "    restart: always" >> $docker_compose
+	echo "" >> $docker_compose
+	echo "networks:" >> $docker_compose
+	echo "  overlay:" >> $docker_compose
+	echo "" >> $docker_compose
+	echo "volumes:" >> $docker_compose
+	echo "  ldapdatavol:" >> $docker_compose
+	echo "      external: false" >> $docker_compose
+	echo "  ldapconfigvol:" >> $docker_compose
+	echo "      external: false" >> $docker_compose
+
 	docker-compose -f $docker_compose up -d >/dev/null 2>&1
 
 	/home/ldap_slave/setupLDAP.sh $domain $pass $ipmaster
