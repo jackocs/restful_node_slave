@@ -126,14 +126,13 @@ if [ "$dtype_id" == "3" ]; then
 	install=`docker inspect -f '{{.State.Status}}' $container`
 
         #mount data
-
-        date_new=$(date '+%Y%m%d%H%M')
+	date_new=$(date '+%Y%m%d%H%M')
         ldap_data=`docker volume inspect ldap_ldapdatavol --format '{{ .Mountpoint }}'`
         if [ -d "/var/lib/ldap" ]; then
             /bin/mv /var/lib/ldap /tmp/ldap_$date_new
         fi
         /bin/cd /var/lib/
-        /bin/ln -s $ldap_data ldap
+        /bin/ln -s $ldap_data /var/lib/ldap
 fi
 
 #update DB
