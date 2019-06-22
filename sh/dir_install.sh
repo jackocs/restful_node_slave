@@ -127,7 +127,7 @@ if [ "$dtype_id" == "3" ]; then
 
         #mount data
 	date_new=$(date '+%Y%m%d%H%M')
-        ldap_data=`docker volume inspect ldap_ldapdatavol --format '{{ .Mountpoint }}'`
+        ldap_data=`docker volume inspect ldap_slave_ldapdatavol --format '{{ .Mountpoint }}'`
         if [ -d "/var/lib/ldap" ]; then
             /bin/mv /var/lib/ldap /tmp/ldap_$date_new
         fi
