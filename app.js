@@ -108,6 +108,7 @@ var	app = express();
 	app.use('/api/v1/dir/stop',require('./v1/api_dir_stop.js'));
         app.use('/api/v1/dir/start',require('./v1/api_dir_start.js'));
         app.use('/api/v1/dir/resync',require('./v1/api_dir_resync.js'));
+        app.use('/api/v1/dir/checkUptime',require('./v1/api_dir_ckuptime.js'));
 	//Count User
 	app.use('/api/v1/users/count',require('./v1/api_users_count.js'));
 
