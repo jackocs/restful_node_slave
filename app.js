@@ -106,11 +106,13 @@ var	app = express();
 	app.use('/api/v1/dir/del',require('./v1/api_dir_del.js'));
 	app.use('/api/v1/dir/restart',require('./v1/api_dir_restart.js'));
 	app.use('/api/v1/dir/stop',require('./v1/api_dir_stop.js'));
-        app.use('/api/v1/dir/start',require('./v1/api_dir_start.js'));
-        app.use('/api/v1/dir/resync',require('./v1/api_dir_resync.js'));
-        app.use('/api/v1/dir/checkUptime',require('./v1/api_dir_ckuptime.js'));
+    app.use('/api/v1/dir/start',require('./v1/api_dir_start.js'));
+    app.use('/api/v1/dir/resync',require('./v1/api_dir_resync.js'));
+    app.use('/api/v1/dir/checkUptime',require('./v1/api_dir_ckuptime.js'));
 	//Count User
 	app.use('/api/v1/users/count',require('./v1/api_users_count.js'));
+	//MONITOR - Docker
+	app.use('/api/v1/monitor/containers',require('./v1/api_monitor_containers.js'));
 
 	app.get('/api/v1/query',function(req, res){
 		res.send(JSON.stringify(req.query));
