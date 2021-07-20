@@ -20,7 +20,8 @@ echo "[" >$jsonfile
 for i in "${docker[@]}"; do
     st=$(docker inspect --format '{{json .State.Running}}' $i)
     #raw=$(docker stats --no-stream $i --format "{\"netio\":\"{{ .NetIO }}\",\"blockio\":\"{{ .BlockIO }}\",\"mem\":{\"raw\":\"{{ .MemUsage }}\",\"percent\":\"{{ .MemPerc }}\"},\"cpu\":\"{{ .CPUPerc }}\"}")
-    raw=$(docker stats --no-stream $i --format "{\"netio\":\"{{ .NetIO }}\",\"blockio\":\"{{ .BlockIO }}\",\"mem\":\"{{ .MemPerc }}\",\"cpu\":\"{{ .CPUPerc }}\"}")
+    #raw=$(docker stats --no-stream $i --format "{\"netio\":\"{{ .NetIO }}\",\"blockio\":\"{{ .BlockIO }}\",\"mem\":\"{{ .MemPerc }}\",\"cpu\":\"{{ .CPUPerc }}\"}")
+    raw=$(docker stats --no-stream $i --format "{\"netio\":\"{{ .NetIO }}\",\"blockio\":\"{{ .BlockIO }}\",\"mem\":\"{{ .MemPerc }}\",\"cpu\":\"{{ .CPUPerc }}\"}" | sed -e "s/%//g")
 
     if [ $k == ${#docker[@]} ]; then
         echo "{\"datetime\": \"$date\", \"container\": \"${map[$j]}\" , \"status\": \"$st\", \"data\": $raw}" >>$jsonfile
