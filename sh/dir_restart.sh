@@ -17,23 +17,23 @@ if [ "$2" == "" ]; then
 fi
 dtype=$2
 
-if [ "$3" == "" ]; then
-        printf "fail#Unknow ipaddress value"
-        exit
-fi
-ipaddress=$3
+#if [ "$3" == "" ]; then
+#        printf "fail#Unknow ipaddress value"
+#        exit
+#fi
+#ipaddress=$3
 
-if [ "$4" == "" ]; then
-        printf "fail#Unknow domain value"
-        exit
-fi
-domain=$4
+#if [ "$4" == "" ]; then
+#        printf "fail#Unknow domain value"
+#        exit
+#fi
+#domain=$4
 
-if [ "$5" == "" ]; then
-        printf "fail#Unknow password value"
-        exit
-fi
-password=$5
+#if [ "$5" == "" ]; then
+#        printf "fail#Unknow password value"
+#        exit
+#fi
+#password=$5
 
 # LDAP Slave
 if [ "$dtype" == "3" ]; then

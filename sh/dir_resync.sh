@@ -58,11 +58,6 @@ if [ "$dtype" == "3" ]; then
 	ckSlpad=$(/bin/curl --silent http://$ipslave:3000/api/v1/dir/install/$domain/$adminpass/$ipslave/$desc/3/$ipmaster/admin)
         #echo $ckSlpad
 
-        #if [ $ckSlpad == "ok" ] ; then
-        #	updateDB=$(/bin/curl --silent http://$ipmaster:3000/api/v1/dir/install/$domain/$adminpass/$ipslave/$desc/3/admin)
-        #        echo $updateDB
-        #fi
-
 	pf_slapd=`/bin/pgrep slapd`
 
 	if [ "$pb_slapd" != "$pf_slapd" ]; then
